@@ -1,18 +1,25 @@
-import numpy as np
-import random
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 
-def generate_data_point(t : int) -> float:
+from data_streamer import DataStreamer
+from data_visualizer import DataVisualizer
+
+def main():
+    visualizer = DataVisualizer()
+    data_streamer = DataStreamer()
+    data_generator = data_streamer.generate_data_point()
     
-    seasonal = 10 * np.sin(0.1 * t)
-    
-    noise = random.gauss(0, 2)
-    
-    if random.random() < 0.1:
-        anomaly = random.choice([30, -30])
-        return seasonal + noise + anomaly
-    
-    return seasonal + noise
+    # Using FuncAnimation to update the plot
+    animation = FuncAnimation(
+        visualizer.fig,
+        visualizer.update_plot,
+        fargs=(data_generator,),
+        interval=100,
+        blit=True,
+        save_count=100
+    )
+    plt.show()
 
 if __name__ == "__main__":
-    for t in range(100):
-        print(generate_data_point(t))
+    print("Starting the real-time data visualization...")
+    main()
