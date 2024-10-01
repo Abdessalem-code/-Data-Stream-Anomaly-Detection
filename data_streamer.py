@@ -1,8 +1,13 @@
 import numpy as np
 import random
 
+class DataPoint:
+    def __init__(self, time, value):
+        self.time = time
+        self.value = value
+
 class DataStreamer:
-    def __init__(self, noise_level=2, anomaly_chance=0.01, amplitude=10, anomaly_magnitude=30):
+    def __init__(self, noise_level=2, anomaly_chance=0.2, amplitude=10, anomaly_magnitude=30):
         self.noise_level = noise_level
         self.anomaly_chance = anomaly_chance
         self.amplitude = amplitude
@@ -23,5 +28,5 @@ class DataStreamer:
             else:
                 data_point = seasonal + noise
             
-            yield self.t, data_point
+            yield DataPoint(self.t, data_point)
             self.t += 1
