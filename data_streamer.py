@@ -7,7 +7,7 @@ class DataPoint:
         self.value = value
 
 class DataStreamer:
-    def __init__(self, noise_level=2, anomaly_chance=0.2, amplitude=10, anomaly_magnitude=30):
+    def __init__(self, noise_level=2, anomaly_chance=0.1, amplitude=5, anomaly_magnitude=25):
         self.noise_level = noise_level
         self.anomaly_chance = anomaly_chance
         self.amplitude = amplitude
@@ -22,7 +22,7 @@ class DataStreamer:
             seasonal = self.amplitude * np.sin(0.1 * self.t)
             noise = random.gauss(0, self.noise_level)
             
-            if random.random() < self.anomaly_chance:
+            if random.random() < self.anomaly_chance and self.t > 30:
                 anomaly = random.choice([self.anomaly_magnitude, -self.anomaly_magnitude])
                 data_point = seasonal + noise + anomaly
             else:

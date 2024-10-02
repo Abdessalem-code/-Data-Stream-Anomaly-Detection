@@ -20,8 +20,8 @@ class AnomalyDetector:
 
 # Z-Score based anomaly detector
 class ZScoreDetector(AnomalyDetector):
-    def __init__(self, threshold=3.0):
-        super().__init__("Z-Score", window_size=50)
+    def __init__(self, threshold=2.0):
+        super().__init__("Z-Score", window_size=30)
         self.threshold = threshold
 
     def detect_anomaly(self):
@@ -37,8 +37,8 @@ class ZScoreDetector(AnomalyDetector):
 
 # Moving Average based anomaly detector
 class MovingAverageDetector(AnomalyDetector):
-    def __init__(self, threshold=2.0):
-        super().__init__("Moving Average", window_size=20)
+    def __init__(self, threshold=1.5):
+        super().__init__("Moving Average", window_size=15)
         self.threshold = threshold
 
     def detect_anomaly(self):
@@ -51,7 +51,7 @@ class MovingAverageDetector(AnomalyDetector):
 # Interquartile Range based anomaly detector
 class IQRDetector(AnomalyDetector):
     def __init__(self, iqr_factor=1.5):
-        super().__init__("IQR", window_size=50)
+        super().__init__("IQR", window_size=30)
         self.iqr_factor = iqr_factor
 
     def detect_anomaly(self):
@@ -109,7 +109,7 @@ class AnomalyDetectionSystem:
                 votes += 1
             self.output_queue.task_done()
 
-        if votes > 0:
+        if votes >= 2:
             self.anomalies.append(data_point)
 
     def get_anomalies(self):
