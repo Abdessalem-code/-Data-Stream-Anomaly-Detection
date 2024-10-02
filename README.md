@@ -25,9 +25,9 @@ This project implements a real-time anomaly detection system that visualizes dat
 - **DataValidationError**: Represents a custom exception for our project.
 - **DataStreamer**: Generates data points that simulate a seasonal signal with noise and occasional anomalies.
 - **AnomalyDetector**: Abstract base class for implementing different anomaly detection strategies.
-  - **ZScoreDetector**: Detects anomalies based on the Z-score method.
-  - **MovingAverageDetector**: Detects anomalies based on deviations from a moving average.
-  - **IQRDetector**: Detects anomalies using the Interquartile Range (IQR).
+  - **ZScoreDetector**: Detects anomalies based on the Z-score method. It measures how many standard deviations a data point is away from the mean. A high Z-Score indicates that the point is far from the typical distribution of the data.
+  - **MovingAverageDetector**: Detects anomalies based on deviations from a moving average. It detects them by comparing the latest data point against a rolling average of previous points. Significant deviations from this average are flagged as potential anomalies.
+  - **IQRDetector**: Detects anomalies using the Interquartile Range (IQR). It measures the spread of the middle 50% of the data (between the first and third quartiles). Points that fall significantly outside this range (above or below) are considered outliers
 - **DataVisualizer**: Visualizes the data stream and detected anomalies in real time.
 - **AnomalyDetectionWorker**: A worker thread that processes incoming data points and uses the assigned anomaly detector to check for anomalies. It handles:
   - **Initialization**: Sets up the thread with a detector, input queue, and output queue.
