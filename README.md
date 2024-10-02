@@ -10,7 +10,9 @@ This project implements a real-time anomaly detection system that visualizes dat
 ```
 .
 ├── anomaly_detector.py  # Contains classes for different anomaly detection strategies.
+├── data_point.py       # contains the base component (data point)
 ├── data_streamer.py     # Generates a stream of data points with optional anomalies.
+├── data_validation_error.py # Contains a custom exception
 ├── data_visualizer.py    # Handles the visualization of data and anomalies.
 ├── main.py              # Main script to run the application.
 ├── requirements.txt      # List of required packages.
@@ -20,6 +22,7 @@ This project implements a real-time anomaly detection system that visualizes dat
 ## Classes Overview
 
 - **DataPoint**: Represents a single data point with a time and value.
+- **DataValidationError**: Represents a custom exception for our project.
 - **DataStreamer**: Generates data points that simulate a seasonal signal with noise and occasional anomalies.
 - **AnomalyDetector**: Abstract base class for implementing different anomaly detection strategies.
   - **ZScoreDetector**: Detects anomalies based on the Z-score method.
