@@ -1,4 +1,4 @@
-# -Data-Stream-Anomaly-Detection
+# Data-Stream-Anomaly-Detection
 
 ![Anomaly Detection Visualization](img/screen.png) <!-- Adjust the path to your image -->
 
@@ -39,7 +39,7 @@ This project implements a real-time anomaly detection system that visualizes dat
 1. Clone the repository:
    ```bash
    git clone https://github.com/Abdessalem-code/Data-Stream-Anomaly-Detection.git
-   cd Data-Stream-Anomaly-Detection.git
+   cd Data-Stream-Anomaly-Detection
    ```
 
 2. Set up a virtual environment:
